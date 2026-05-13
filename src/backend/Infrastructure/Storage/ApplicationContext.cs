@@ -33,11 +33,11 @@ namespace Infrastructure.Storage
         internal ConcurrentDictionary<string,T> Dictionary<T>()
         {
             if (typeof(T) == typeof(SimpleTokenEntity))
-                return SimpleTokens as ConcurrentDictionary<string, T>;
+                return SimpleTokens as ConcurrentDictionary<string, T> ?? throw new InvalidOperationException($"Failed to cast to {typeof(T).Name}");
             else if (typeof(T) == typeof(FullTokenEntity))
-                return FullTokens as ConcurrentDictionary<string, T>;
+                return FullTokens as ConcurrentDictionary<string, T> ?? throw new InvalidOperationException($"Failed to cast to {typeof(T).Name}");
             else if (typeof(T) == typeof(UserEntity))
-                return Users as ConcurrentDictionary<string, T>;
+                return Users as ConcurrentDictionary<string, T> ?? throw new InvalidOperationException($"Failed to cast to {typeof(T).Name}");
             else
                 throw new InvalidOperationException($"Unsupported type: {typeof(T).Name}");
         }
