@@ -88,3 +88,7 @@ app.MapControllers();
 
 
 app.Run();
+
+
+//For tests
+public partial class Program { }
